@@ -1,0 +1,50 @@
+/*
+Activity1:
+Write a simple method to draw a circle.
+Add an if-statement and a recursive call to draw circle, which draws a smaller circle.
+
+You might first think about what it will look like.
+Modify the program to draw the circle toward the left.
+Modify the program to make two recursive calls.
+Below is some sample code using Processing:
+
+*/
+void setup() {
+  background(0);
+  size(800, 600);
+  noFill();
+  stroke(255);
+  drawCircle4(400, 300, 255);
+}
+//top code never changes - drawCircle evolves.
+
+//evolution 1 - basic method that draws a circle
+void drawCircle(int x, int y, int sz) {
+  ellipse(x, y, sz, sz);
+}
+
+//evolution 2 - 1st recursion - draw what you think the code will produce
+void drawCircle2(int x, int y, int sz) {
+  fill(sz, 0, 0);
+  ellipse(x, y, sz, sz);
+  if (sz > 10)
+    drawCircle2(x, y, sz/2);
+}
+//evolution 3 - move the circles to the right - what will code produce?
+void drawCircle3(int x, int y, int sz) {
+  ellipse(x, y, sz, sz);
+  if (sz > 10)
+    drawCircle3(x+sz/2, y, sz/2);
+}
+
+//evolution 4 - add second recursion - this is where it becomes interesting
+void drawCircle4(int x, int y, int sz) {
+  fill(sz, 0, 0);
+  ellipse(x, y, sz, sz);
+  if (sz > 10) {
+    drawCircle4(x+sz/2, y, sz/2);
+    drawCircle4(x-sz/2, y, sz/2);
+    drawCircle4(x, y+sz/2, sz/2);
+    drawCircle4(x, y-sz/2, sz/2);
+  }
+}
